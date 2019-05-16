@@ -1,0 +1,26 @@
+public class Solution {
+    private ArrayList<ArrayList<Integer>> al = new ArrayList<ArrayList<Integer>>();
+    
+    public void pathSum(TreeNode A, int B,int sum, ArrayList<Integer> x) {
+        if(A==null){
+            return;
+        }
+        sum+=A.val;
+        x.add(A.val);
+        if(A.left==null && A.right==null){
+            if(sum==B){
+                al.add(new ArrayList<Integer>(x));
+            }
+        }
+        pathSum(A.left,B,sum,x);
+        pathSum(A.right,B,sum,x);
+        x.remove(x.size()-1);
+    }
+    public ArrayList<ArrayList<Integer>> pathSum(TreeNode A, int B) {
+        if(A==null){
+            return null;
+        }
+        pathSum(A,B,0,new ArrayList<Integer>());
+        return al;
+    }
+}
