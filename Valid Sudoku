@@ -1,0 +1,87 @@
+public class Solution {
+    public int isValidSudoku(final List<String> A) {
+        int i,j;
+        String s;
+        char t;
+        int [][]a = new int[9][9];
+        ArrayList <Integer>[]al1 = new ArrayList[9];
+        ArrayList <Integer>[]al2 = new ArrayList[9];
+        for(i=0;i<9;i++){
+            al1[i] = new ArrayList<Integer>();
+            al2[i] = new ArrayList<Integer>();
+        }
+        for(i=0;i<9;i++){
+            s=A.get(i);
+            for(j=0;j<9;j++){
+                t=s.charAt(j);
+                if(t=='.'){
+                    continue;
+                }
+                a[i][j]=Character.getNumericValue(t);
+                //System.out.println(a[i][j]);
+                if(al1[j].contains(a[i][j])){
+                    return 0;
+                }
+                else{
+                    al1[j].add(a[i][j]);
+                }
+                if(al2[i].contains(a[i][j])){
+                    return 0;
+                }
+                else{
+                    al2[i].add(a[i][j]);
+                }
+            }
+            //System.out.println();
+        }
+        ArrayList<Integer> al;
+        for(i=0;i<3;i++){
+            for(j=0;j<3;j++){
+                al = new ArrayList<Integer>();
+                if(a[i*3][j*3]!=0)
+                    al.add(a[i*3][j*3]);
+                
+                if(al.contains(a[i*3][(j*3)+1]))
+                    return 0;
+                if(a[i*3][(j*3)+1]!=0)
+                    al.add(a[i*3][(j*3)+1]);
+                
+                if(al.contains(a[i*3][(j*3)+2]))
+                    return 0;
+                if(a[i*3][(j*3)+2]!=0)
+                    al.add(a[i*3][(j*3)+2]);
+                    
+                if(al.contains(a[(i*3)+1][(j*3)]))
+                    return 0;
+                if(a[(i*3)+1][(j*3)]!=0)
+                    al.add(a[(i*3)+1][(j*3)]);
+                    
+                if(al.contains(a[(i*3)+1][(j*3)+1]))
+                    return 0;
+                if(a[(i*3)+1][(j*3)+1]!=0)
+                    al.add(a[(i*3)+1][(j*3)+1]);
+                    
+                if(al.contains(a[(i*3)+1][(j*3)+2]))
+                    return 0;
+                if(a[(i*3)+1][(j*3)+2]!=0)
+                    al.add(a[(i*3)+1][(j*3)+2]);
+                    
+                if(al.contains(a[(i*3)+2][(j*3)]))
+                    return 0;
+                if(a[(i*3)+2][(j*3)]!=0)
+                    al.add(a[(i*3)+2][(j*3)]);
+                    
+                if(al.contains(a[(i*3)+2][(j*3)+1]))
+                    return 0;
+                if(a[(i*3)+2][(j*3)+1]!=0)
+                    al.add(a[(i*3)+2][(j*3)+1]);
+                    
+                if(al.contains(a[(i*3)+2][(j*3)+2]))
+                    return 0;
+                if(a[(i*3)+2][(j*3)+2]!=0)
+                    al.add(a[(i*3)+2][(j*3)+2]);
+            }
+        }
+        return 1;
+    }
+}
